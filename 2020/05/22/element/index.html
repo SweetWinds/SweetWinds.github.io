@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -305,6 +305,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -478,14 +491,24 @@
                 <h1 id="导入Element-UI"><a href="#导入Element-UI" class="headerlink" title="导入Element UI"></a>导入Element UI</h1><p>通过<strong>vue ui</strong>创建的项目可以在初始化的时候选择element的插件</p>
 <h2 id="按需导入"><a href="#按需导入" class="headerlink" title="按需导入"></a>按需导入</h2><p>将plugin的<strong>element.js</strong>文件导入到<strong>main.js</strong>文件中</p>
 <p>在plugin中配置element ui</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Button, Select &#125; <span class="keyword">from</span> <span class="string">'element-ui'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</span><br><span class="line"> Vue.use(Button)</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Button<span class="token punctuation">,</span> Select <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'element-ui'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./App.vue'</span><span class="token punctuation">;</span>
+ Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Button<span class="token punctuation">)</span></code></pre>
 <p><strong>main.js</strong>中的配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> h <span class="token operator">=</span><span class="token operator">></span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>最后在根页面或者组件中可直接使用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-row&gt;</span><br><span class="line">  &lt;el-button&gt;默认按钮&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;el-button type="primary"&gt;主要按钮&lt;/</span>el-button&gt;</span><br><span class="line">  &lt;el-button type=<span class="string">"success"</span>&gt;成功按钮&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;el-button type="info"&gt;信息按钮&lt;/</span>el-button&gt;</span><br><span class="line">  &lt;el-button type=<span class="string">"warning"</span>&gt;警告按钮&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;el-button type="danger"&gt;危险按钮&lt;/</span>el-button&gt;</span><br><span class="line">&lt;<span class="regexp">/el-row&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>el<span class="token operator">-</span>row<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button<span class="token operator">></span>默认按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"primary"</span><span class="token operator">></span>主要按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"success"</span><span class="token operator">></span>成功按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"info"</span><span class="token operator">></span>信息按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"warning"</span><span class="token operator">></span>警告按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+  <span class="token operator">&lt;</span>el<span class="token operator">-</span>button type<span class="token operator">=</span><span class="token string">"danger"</span><span class="token operator">></span>危险按钮<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>button<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>el<span class="token operator">-</span>row<span class="token operator">></span></code></pre>
 <hr>
 <h1 id="填充"><a href="#填充" class="headerlink" title="填充"></a>填充</h1><p>在element组件已经使用的情况下，如何使布局填充是很关键的一个步骤，即所谓的美化。</p>
 <p>在这里首先需要借助另一个工具——<strong>谷歌控制台</strong></p>

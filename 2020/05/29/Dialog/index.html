@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -305,6 +305,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -481,16 +494,53 @@
 <li><p>在对话框中实现页面的切换</p>
 </li>
 <li><p>实际例子：登录界面账号密码登录和手机验证码登录两种方式的切换</p>
-<h2 id="Element-UI"><a href="#Element-UI" class="headerlink" title="Element UI"></a>Element UI</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button type=<span class="string">"text"</span> </span><br><span class="line">@click=<span class="string">"centerDialogVisible = true"</span>&gt;点击打开 Dialog&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;el-dialog</span></span><br><span class="line"><span class="regexp">  title="提示"</span></span><br><span class="line"><span class="regexp">  :visible.sync="centerDialogVisible"</span></span><br><span class="line"><span class="regexp">  width="30%"</span></span><br><span class="line"><span class="regexp">  center&gt;</span></span><br><span class="line"><span class="regexp">  &lt;span&gt;需要注意的是内容是默认不居中的&lt;/</span>span&gt;</span><br><span class="line">  &lt;span slot=<span class="string">"footer"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"dialog-footer"</span>&gt;</span><br><span class="line">    &lt;el-button @click=<span class="string">"centerDialogVisible = false"</span>&gt;取 消&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;el-button type="primary" @click="centerDialogVisible = false"&gt;确 定&lt;/</span>el-button&gt;</span><br><span class="line">  &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        centerDialogVisible: <span class="literal">false</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Element-UI"><a href="#Element-UI" class="headerlink" title="Element UI"></a>Element UI</h2><pre class=" language-JS"><code class="language-JS"><el-button type="text" 
+@click="centerDialogVisible = true">点击打开 Dialog</el-button>
 
+<el-dialog
+  title="提示"
+  :visible.sync="centerDialogVisible"
+  width="30%"
+  center>
+  <span>需要注意的是内容是默认不居中的</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="centerDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
 
-
+<script>
+  export default {
+    data() {
+      return {
+        centerDialogVisible: false
+      };
+    }
+  };
+</script></code></pre>
 </li>
 </ol>
 <p>如上这是最基本的用法</p>
 <p> 将<code>center</code>设置为<code>true</code>即可使标题和底部居中。<code>center</code>仅影响标题和底部区域。Dialog 的内容是任意的，在一些情况下，内容并不适合居中布局。如果需要内容也水平居中，请自行为其添加 CSS。 </p>
-<h2 id="业务实现"><a href="#业务实现" class="headerlink" title="业务实现"></a>业务实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">     &lt;div style=<span class="string">"width: 260px"</span> &gt;</span><br><span class="line">                &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"forget-acct-class"</span> @click=<span class="string">"switchLoginType('msg')"</span> v-<span class="keyword">if</span>=<span class="string">"!isMsgLogin"</span>&gt;短信快捷登录&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                &lt;a class="forget-acct-class" @click="switchLoginType('acc')" v-if="isMsgLogin"&gt;账号密码登录&lt;/</span>a&gt;</span><br><span class="line">                &lt;!--<span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"error-msg-class"</span> <span class="attr">style</span>=<span class="string">"margin-left: 80px"</span>&gt;</span>密码错误<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>--&gt;</span><br><span class="line">              &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">-----------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="regexp">                        data ()&#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      unJoinMsgShow:false,</span></span><br><span class="line"><span class="regexp">      isMsgLogin: false,</span></span><br><span class="line"><span class="regexp">        ---------------------------------------------------------------------------------</span></span><br><span class="line"><span class="regexp">              switchLoginType(type)&#123;</span></span><br><span class="line"><span class="regexp">        this.unJoinMsgShow=false</span></span><br><span class="line"><span class="regexp">        if(type==='msg')&#123;</span></span><br><span class="line"><span class="regexp">          this.isMsgLogin=true</span></span><br><span class="line"><span class="regexp">        &#125;else&#123;</span></span><br><span class="line"><span class="regexp">          this.isMsgLogin=false</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">      &#125;,</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="业务实现"><a href="#业务实现" class="headerlink" title="业务实现"></a>业务实现</h2><pre class=" language-js"><code class="language-js">     <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token string">"width: 260px"</span> <span class="token operator">></span>
+                <span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"forget-acct-class"</span> @click<span class="token operator">=</span><span class="token string">"switchLoginType('msg')"</span> v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"!isMsgLogin"</span><span class="token operator">></span>短信快捷登录<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+                <span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"forget-acct-class"</span> @click<span class="token operator">=</span><span class="token string">"switchLoginType('acc')"</span> v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"isMsgLogin"</span><span class="token operator">></span>账号密码登录<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
+                <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"error-msg-class"</span> style<span class="token operator">=</span><span class="token string">"margin-left: 80px"</span><span class="token operator">></span>密码错误<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">--</span><span class="token operator">></span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+                        data <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      unJoinMsgShow<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
+      isMsgLogin<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+              <span class="token function">switchLoginType</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>unJoinMsgShow<span class="token operator">=</span><span class="token boolean">false</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'msg'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>isMsgLogin<span class="token operator">=</span><span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>isMsgLogin<span class="token operator">=</span><span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
 <p>如上述代码所示，假如只需要实现页面的切换效果这些代码已经足够。</p>
 
             </div>
