@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Dialog, Hexo">
+    <meta name="keywords" content="前后端联调, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Dialog | Hexo</title>
+    <title>前后端联调 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,7 +308,7 @@
 <script src="/libs/cryptojs/crypto-js.min.js"></script>
 <script>
     (function() {
-        let pwd = 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f';
+        let pwd = '2e06d4d58006dd575764d8e348c653397cd2c33288d4fad146555ae04291824c';
         if (pwd && pwd.length > 0) {
             if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
                 alert('密码错误，将返回主页！');
@@ -321,12 +321,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Dialog</h1>
+                    <h1 class="description center-align post-title">前后端联调</h1>
                 </div>
             </div>
         </div>
@@ -443,12 +443,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ElementUI/">
-                                <span class="chip bg-color">ElementUI</span>
+                            <a href="/tags/%E4%BF%9D%E9%99%A9%E9%A1%B9%E7%9B%AE/">
+                                <span class="chip bg-color">保险项目</span>
                             </a>
                         
-                            <a href="/tags/Dialog/">
-                                <span class="chip bg-color">Dialog</span>
+                            <a href="/tags/%E6%8E%A5%E5%8F%A3%E8%81%94%E8%B0%83/">
+                                <span class="chip bg-color">接口联调</span>
                             </a>
                         
                     </div>
@@ -459,8 +459,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/vue/" class="post-category">
-                                vue
+                            <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/" class="post-category">
+                                前后端联调
                             </a>
                         
                     </div>
@@ -472,7 +472,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-29
+                    2020-06-08
                 </div>
                 
 
@@ -488,60 +488,17 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="有关Dialog的切换效果的应用"><a href="#有关Dialog的切换效果的应用" class="headerlink" title="有关Dialog的切换效果的应用"></a>有关Dialog的切换效果的应用</h1><h2 id="业务分析"><a href="#业务分析" class="headerlink" title="业务分析"></a>业务分析</h2><ol>
-<li><p>基础用法是对话框的弹出，用来嵌套各种组件来达到某种效果</p>
-</li>
-<li><p>在对话框中实现页面的切换</p>
-</li>
-<li><p>实际例子：登录界面账号密码登录和手机验证码登录两种方式的切换</p>
-<h2 id="Element-UI"><a href="#Element-UI" class="headerlink" title="Element UI"></a>Element UI</h2><pre class=" language-JS"><code class="language-JS"><el-button type="text" 
-@click="centerDialogVisible = true">点击打开 Dialog</el-button>
-
-<el-dialog
-  title="提示"
-  :visible.sync="centerDialogVisible"
-  width="30%"
-  center>
-  <span>需要注意的是内容是默认不居中的</span>
-  <span slot="footer" class="dialog-footer">
-    <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
-  </span>
-</el-dialog>
-
-<script>
-  export default {
-    data() {
-      return {
-        centerDialogVisible: false
-      };
-    }
-  };
-</script></code></pre>
-</li>
-</ol>
-<p>如上这是最基本的用法</p>
-<p> 将<code>center</code>设置为<code>true</code>即可使标题和底部居中。<code>center</code>仅影响标题和底部区域。Dialog 的内容是任意的，在一些情况下，内容并不适合居中布局。如果需要内容也水平居中，请自行为其添加 CSS。 </p>
-<h2 id="业务实现"><a href="#业务实现" class="headerlink" title="业务实现"></a>业务实现</h2><pre class=" language-js"><code class="language-js">     <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token string">"width: 260px"</span> <span class="token operator">></span>
-                <span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"forget-acct-class"</span> @click<span class="token operator">=</span><span class="token string">"switchLoginType('msg')"</span> v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"!isMsgLogin"</span><span class="token operator">></span>短信快捷登录<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-                <span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"forget-acct-class"</span> @click<span class="token operator">=</span><span class="token string">"switchLoginType('acc')"</span> v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">"isMsgLogin"</span><span class="token operator">></span>账号密码登录<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-                <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span><span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"error-msg-class"</span> style<span class="token operator">=</span><span class="token string">"margin-left: 80px"</span><span class="token operator">></span>密码错误<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">--</span><span class="token operator">></span>
-              <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-                        data <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      unJoinMsgShow<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">,</span>
-      isMsgLogin<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-        <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
-              <span class="token function">switchLoginType</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>unJoinMsgShow<span class="token operator">=</span><span class="token boolean">false</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>type<span class="token operator">===</span><span class="token string">'msg'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span>isMsgLogin<span class="token operator">=</span><span class="token boolean">true</span>
-        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-          <span class="token keyword">this</span><span class="token punctuation">.</span>isMsgLogin<span class="token operator">=</span><span class="token boolean">false</span>
-        <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
-<p>如上述代码所示，假如只需要实现页面的切换效果这些代码已经足够。</p>
+                <p><strong>接口联调</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> 公司名称</li>
+<li><input disabled="" type="checkbox"> 类型</li>
+<li><input disabled="" type="checkbox"> 投保时间</li>
+<li><input disabled="" type="checkbox"> 年龄范围</li>
+<li><input disabled="" type="checkbox"> 保险金额</li>
+<li><input disabled="" type="checkbox"> 状态</li>
+<li><input disabled="" type="checkbox"> 操作</li>
+</ul>
+<p>其中状态和操作是需要插槽的</p>
 
             </div>
             <hr/>
@@ -567,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://SweetWinds.github.io/2020/05/29/Dialog/">https://SweetWinds.github.io/2020/05/29/Dialog/</a>
+                    <a href="https://SweetWinds.github.io/2020/06/08/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/">https://SweetWinds.github.io/2020/06/08/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -605,12 +562,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ElementUI/">
-                                    <span class="chip bg-color">ElementUI</span>
+                                <a href="/tags/%E4%BF%9D%E9%99%A9%E9%A1%B9%E7%9B%AE/">
+                                    <span class="chip bg-color">保险项目</span>
                                 </a>
                             
-                                <a href="/tags/Dialog/">
-                                    <span class="chip bg-color">Dialog</span>
+                                <a href="/tags/%E6%8E%A5%E5%8F%A3%E8%81%94%E8%B0%83/">
+                                    <span class="chip bg-color">接口联调</span>
                                 </a>
                             
                         </div>
@@ -778,50 +735,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2020/05/30/CSS/">
+                <a href="/2020/06/08/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="CSS">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="前后端联调">
                         
-                        <span class="card-title">CSS</span>
+                        <span class="card-title">前后端联调</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇讲述了有关CSS的相关配置
+                            本篇讲述了有关保险项目的前后端联调
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CSS/" class="post-category">
-                                    CSS
+                            <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/" class="post-category">
+                                    前后端联调
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
+                    <a href="/tags/%E4%BF%9D%E9%99%A9%E9%A1%B9%E7%9B%AE/">
+                        <span class="chip bg-color">保险项目</span>
                     </a>
                     
-                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
-                        <span class="chip bg-color">前端</span>
+                    <a href="/tags/%E6%8E%A5%E5%8F%A3%E8%81%94%E8%B0%83/">
+                        <span class="chip bg-color">接口联调</span>
                     </a>
                     
                 </div>
@@ -835,31 +794,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/28/UPLOADIMAG/">
+                <a href="/2020/06/05/%E4%BF%9D%E9%99%A9%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%9F%E6%80%BB%E7%BB%93/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="UPLOADIMAG">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="保险项目中期总结">
                         
-                        <span class="card-title">UPLOADIMAG</span>
+                        <span class="card-title">保险项目中期总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本篇讲述了有关Uploadimag的相关配置
+                            本篇讲述了有关保险项目的中期总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" class="post-category">
+                                    项目总结
                                 </a>
                             
                             
@@ -869,16 +828,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BB%84%E4%BB%B6/">
-                        <span class="chip bg-color">组件</span>
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">项目总结</span>
                     </a>
                     
-                    <a href="/tags/UI%E5%BA%93/">
-                        <span class="chip bg-color">UI库</span>
-                    </a>
-                    
-                    <a href="/tags/Vue/">
-                        <span class="chip bg-color">Vue</span>
+                    <a href="/tags/insurance/">
+                        <span class="chip bg-color">insurance</span>
                     </a>
                     
                 </div>
