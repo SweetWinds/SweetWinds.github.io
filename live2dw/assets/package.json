@@ -1,7 +1,7 @@
 {
-  "name": "live2d-widget-model-koharu",
+  "name": "live2d-widget-model-shizuku",
   "version": "1.0.5",
-  "description": "koharu live2d model for live2d-widget.js",
+  "description": "shizuku live2d model for live2d-widget.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,7 @@
     "url": "https://github.com/xiazeyu/live2d-widget-models/issues"
   },
   "homepage": "https://github.com/xiazeyu/live2d-widget-models#readme",
-  "__npminstall_done": "Wed Jun 10 2020 15:42:21 GMT+0800 (GMT+08:00)",
-  "_from": "live2d-widget-model-koharu@1.0.5",
-  "_resolved": "https://registry.npm.taobao.org/live2d-widget-model-koharu/download/live2d-widget-model-koharu-1.0.5.tgz"
+  "__npminstall_done": "Wed Jun 10 2020 16:00:04 GMT+0800 (GMT+08:00)",
+  "_from": "live2d-widget-model-shizuku@1.0.5",
+  "_resolved": "https://registry.npm.taobao.org/live2d-widget-model-shizuku/download/live2d-widget-model-shizuku-1.0.5.tgz"
 }
